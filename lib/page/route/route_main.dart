@@ -20,6 +20,8 @@ class RouteMain extends StatelessWidget {
 
             Text('插件名称：get \n版本：4.3.4',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
 
+            Text('初始化：在 main 中的 MyApp 里，使用 GetMaterialApp 替换 MaterialApp',style: TextStyle(fontSize: 18),),
+
             Container(height: 20,),
             EgWidget(
               title: '直接跳转',

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_plugin_app/page/route/route_main.dart';
+import 'package:flutter_plugin_app/page/state/state_main.dart';
 import 'package:flutter_plugin_app/widget/plugin_card.dart';
 import 'package:get/get.dart';
 
@@ -39,7 +40,9 @@ class _HomePageState extends State<HomePage> {
           ),
 
           PluginCard(
-            onTap: (){},
+            onTap: (){
+              Get.to(()=> StateMainPage());
+            },
             name: '状态管理',
             color: Color(0xFFFFFF99),
           ),
