@@ -29,7 +29,18 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
-  get: ^4.3.4
+  get: ^4.3.4  # 路由和状态管理
+
+  flutter_screenutil: ^5.0.0+2  # 屏幕适配
+
+  shared_preferences: ^2.0.6  # sp缓存
+  sqflite: ^2.0.0+3  # 数据库
+
+  image_picker: ^0.8.3+1  # 图片
+
+  permission_handler: ^8.1.4+2  # 权限
+
+  dio: ^4.0.0  # 网络请求
 
 dev_dependencies:
   flutter_test:
