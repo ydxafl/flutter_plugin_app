@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_plugin_app/page/network/dio.dart';
 import 'package:flutter_plugin_app/page/route/route_main.dart';
 import 'package:flutter_plugin_app/page/state/state_main.dart';
 import 'package:flutter_plugin_app/widget/plugin_card.dart';
@@ -49,7 +50,9 @@ class _HomePageState extends State<HomePage> {
           ),
 
           PluginCard(
-            onTap: (){},
+            onTap: (){
+              DioHelper.get('wxarticle/chapters/json', onSuccess:(data){}, onError:(){}, onFinish:(){});
+            },
             name: '网络请求',
             color: Color(0xFF666699),
           ),
