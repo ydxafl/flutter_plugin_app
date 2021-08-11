@@ -115,7 +115,7 @@ class DioHelper{
   }) async {
 
     if (!url.startsWith('http')) {
-      if(baseUrl == ''){
+      if(!baseUrl.startsWith('http')){
         _handError(error,ErrorMsg.UNDEFINED_BASE_URL,ErrorCode.CODE_UNDEFINED_BASE_URL);
         return;
       }
@@ -123,7 +123,7 @@ class DioHelper{
     }
 
     try {
-      Map<String, dynamic> dataMap = data ?? new Map<String, dynamic>();
+      Map<String, dynamic> dataMap = data ?? Map<String, dynamic>();
       Map<String, dynamic>? headersMap = header?? headers;
       if(addHeader != null){
         headersMap.addAll(addHeader);
@@ -131,7 +131,7 @@ class DioHelper{
 
       // 配置dio请求信息
       Response response;
-      Dio dio = new Dio();
+      Dio dio = Dio();
 
       if(url.startsWith('https')){
         if(reCer){

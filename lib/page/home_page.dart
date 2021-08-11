@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_plugin_app/page/network/dio.dart';
+import 'package:flutter_plugin_app/page/network/net_work_main.dart';
 import 'package:flutter_plugin_app/page/route/route_main.dart';
+import 'package:flutter_plugin_app/page/screenutil/screen_util_main.dart';
 import 'package:flutter_plugin_app/page/state/state_main.dart';
 import 'package:flutter_plugin_app/widget/plugin_card.dart';
 import 'package:get/get.dart';
@@ -51,7 +53,15 @@ class _HomePageState extends State<HomePage> {
 
           PluginCard(
             onTap: (){
-              DioHelper.get('wxarticle/chapters/json', onSuccess:(data){}, onError:(){}, onFinish:(){});
+              Get.to(()=>ScreenUtilMainPage());
+            },
+            name: '屏幕适配',
+            color: Color(0xFFCCCC99),
+          ),
+
+          PluginCard(
+            onTap: (){
+              Get.to(() => NetWorkMainPage());
             },
             name: '网络请求',
             color: Color(0xFF666699),
@@ -73,12 +83,6 @@ class _HomePageState extends State<HomePage> {
             onTap: (){},
             name: '照片',
             color: Color(0xFF0099CC),
-          ),
-
-          PluginCard(
-            onTap: (){},
-            name: '屏幕适配',
-            color: Color(0xFFCCCC99),
           ),
 
         ],
