@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plugin_app/page/network/chapters.dart';
 import 'package:flutter_plugin_app/page/network/dio.dart';
+import 'package:flutter_plugin_app/widget/progress_dialog.dart';
 import 'package:get/get.dart';
 
 class ChaptersController extends GetxController{
@@ -9,6 +10,8 @@ class ChaptersController extends GetxController{
   var chapters = Chapters().obs;
 
   void getChapters(){
+    ProgressDialog.showProgress(Get.context!);
+
     DioHelper.get('wxarticle/chapters/json', onSuccess:(data){
       Chapters chapter = Chapters.fromJson(data);
       if(chapter.errorCode == 0){
@@ -26,12 +29,13 @@ class ChaptersController extends GetxController{
           content: Text('$msg'),
         ),
       );
-    }, onFinish:(){});
+    }, onFinish:(){
+      ProgressDialog.dismiss(Get.context!);
+    });
   }
 
   void clean() {
-    Chapters chapter = Chapters();
-    chapters.value = chapter;
+    chapters.value = Chapters();
   }
 
 

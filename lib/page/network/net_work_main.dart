@@ -13,7 +13,7 @@ class NetWorkMainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('玩Android公众号列表'),
+        title: Text('网络请求:dio'),
         actions: [
           InkWell(
             child: Container(
@@ -31,11 +31,12 @@ class NetWorkMainPage extends StatelessWidget {
         itemBuilder:(context,index){
           return Container(
             margin: EdgeInsets.all(10),
-            child: Text('公众号名称：${controller.chapters.value.data![index].name}'),
+            child: Text('名称：${controller.chapters.value.data![index].name}'),
           );
         },
         itemCount: (controller.chapters.value.data == null) ? 0 :controller.chapters.value.data!.length,
       )),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           controller.getChapters();

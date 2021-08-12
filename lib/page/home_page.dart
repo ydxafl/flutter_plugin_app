@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plugin_app/page/network/dio.dart';
 import 'package:flutter_plugin_app/page/network/net_work_main.dart';
+import 'package:flutter_plugin_app/page/permission/permission_main.dart';
 import 'package:flutter_plugin_app/page/route/route_main.dart';
 import 'package:flutter_plugin_app/page/screenutil/screen_util_main.dart';
 import 'package:flutter_plugin_app/page/state/state_main.dart';
@@ -68,14 +69,16 @@ class _HomePageState extends State<HomePage> {
           ),
 
           PluginCard(
-            onTap: (){},
+            onTap: (){
+              Get.to(()=>PermissionMainPage());
+            },
             name: '权限',
             color: Color(0xFFFF9900),
           ),
 
           PluginCard(
             onTap: (){},
-            name: '缓存/持久化',
+            name: '数据缓存',
             color: Color(0xFFFFFF00),
           ),
 
@@ -86,7 +89,6 @@ class _HomePageState extends State<HomePage> {
           ),
 
         ],
-
       ),
     );
   }

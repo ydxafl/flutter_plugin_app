@@ -35,8 +35,6 @@ dependencies:
 
   shared_preferences: ^2.0.6  # sp缓存
 
-  sqflite: ^2.0.0+3  # 数据库
-
   image_picker: ^0.8.3+1  # 图片
 
   permission_handler: ^8.1.4+2  # 权限
