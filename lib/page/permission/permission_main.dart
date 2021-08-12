@@ -29,7 +29,7 @@ class PermissionMainPage extends StatelessWidget {
                   ,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                 Text('Android ：在AndroidManifest.xml 中添加权限'
                     '\n'
-                    'iOS：在Info.plist 中添加权限说明，在Podfile 中添注册'
+                    'iOS：在Info.plist 中添加权限说明，在Podfile 中注册'
                     '\n'
                     '详情查看：https://pub.dev/packages/permission_handler'
                   ,style: TextStyle(fontSize: 15),),

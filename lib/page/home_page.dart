@@ -92,7 +92,6 @@ class _HomePageState extends State<HomePage> {
             name: '照片',
             color: Color(0xFF0099CC),
           ),
-
         ],
       ),
     );

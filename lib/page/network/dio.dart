@@ -116,7 +116,7 @@ class DioHelper{
 
     if (!url.startsWith('http')) {
       if(!baseUrl.startsWith('http')){
-        _handError(error,ErrorMsg.UNDEFINED_BASE_URL,ErrorCode.CODE_UNDEFINED_BASE_URL);
+        _handError(error,'undefined base url',ErrorCode.CODE_UNDEFINED_BASE_URL);
         return;
       }
       url = baseUrl + url;
@@ -136,19 +136,19 @@ class DioHelper{
       if(url.startsWith('https')){
         if(reCer){
           if(severCert == null || severCert == ''){
-            _handError(error, 'errorMsg', 1000);
+            _handError(error, 'severCert undefined', ErrorCode.CODE_UNDEFINED_SEVER_CERT);
             return;
           }
           if(clientCert == null || clientCert == ''){
-            _handError(error, 'errorMsg', 1000);
+            _handError(error, 'clientCert undefined', ErrorCode.CODE_UNDEFINED_CLIENT_CERT);
             return;
           }
           if(clientPrivate == null || clientPrivate == ''){
-            _handError(error, 'errorMsg', 1000);
+            _handError(error, 'clientPrivate undefined', ErrorCode.CODE_UNDEFINED_CLIENT_PRIVATE);
             return;
           }
           if(certPassword == null || certPassword == ''){
-            _handError(error, 'errorMsg', 1000);
+            _handError(error, 'certPassword undefined', ErrorCode.CODE_UNDEFINED_CERT_PASSWORD);
             return;
           }
 
@@ -210,34 +210,34 @@ class DioHelper{
           break;
 
         default:
-          _handError(error, '_msg',10000);
+          _handError(error, 'http method not found',ErrorCode.CODE_HTTP_METHOD_NOT_FOUND);
           return;
       }
 
       if(response.statusCode != null){
+        /// 200（含） - 300(不含)  表示正常响应
         if (response.statusCode! >= 300 || response.statusCode! < 200) {
-          var _msg = '网络请求错误,状态码:' + response.statusCode.toString();
-          _handError(error, _msg,response.statusCode!);
+          _httpError(error, response.statusCode!);
           return;
         }
 
         if(response.data==null){
-          _handError(error, 'errorMsg', 100000);
+          _handError(error, 'response data is null', ErrorCode.CODE_RESPONSE_DATA_IS_NULL);
         }else{
           debugPrint('返回内容：${response.data.toString()}');
+
           success(response.data);
         }
       }else{
-        _handError(error, 'errorMsg', 100000);
+        _handError(error, 'response statusCode is null', ErrorCode.CODE_RESPONSE_STATUS_CODE_IS_NULL);
       }
-
     }on DioError catch (err){
       if(err.response==null){
-        _handError(error, "未知错误",123);
+        _handError(error, "未知错误",ErrorCode.CODE_UNKNOWN_ERROR);
       }else if (err.type == DioErrorType.connectTimeout) {
-        _handError(error, "网络连接超时",123);
+        _handError(error, "网络连接超时",ErrorCode.CODE_CONNECT_TIMEOUT);
       } else {
-        _handError(error, "网络连接错误",123);
+        _handError(error, "其他错误",ErrorCode.CODE_OTHER_ERROR);
       }
     }
   }
@@ -247,25 +247,48 @@ class DioHelper{
     errorCallback(errorMsg,code);
   }
 
+  // http 错误在这里补充
+  static _httpError(Function errorCallback, int code) {
+    switch(code){
+      case 401:
+        errorCallback("未授权",code);
+        break;
+
+      case 404:
+        errorCallback("404 NOT FOUND",code);
+        break;
+
+      case 500:
+        errorCallback("系统异常",code);
+        break;
+
+      default:
+        errorCallback("其他HTTP错误，错误码：$code",code);
+        break;
+    }
+  }
+
 }
 
 
-
+/// 一些错误码
 class ErrorCode{
-  /// -201  到  -299   配置异常
-  static const int CODE_UNDEFINED_BASE_URL = -201; // 未定义基础地址
+  /// -201  到  -299
+  static const int CODE_UNDEFINED_BASE_URL = -201;
   static const int CODE_UNDEFINED_SEVER_CERT = -202;
   static const int CODE_UNDEFINED_CLIENT_CERT = -203;
   static const int CODE_UNDEFINED_CLIENT_PRIVATE = -204;
   static const int CODE_UNDEFINED_CERT_PASSWORD = -205;
-
+  static const int CODE_HTTP_METHOD_NOT_FOUND = -206;
+  static const int CODE_RESPONSE_DATA_IS_NULL = -207;
+  static const int CODE_RESPONSE_STATUS_CODE_IS_NULL = -208;
+  static const int CODE_UNKNOWN_ERROR = -209;
+  static const int CODE_CONNECT_TIMEOUT = -210;
+  static const int CODE_OTHER_ERROR = -211;
 }
 
 
-class ErrorMsg{
-  static const String UNDEFINED_BASE_URL = '未定义请求地址';
-}
-
+/// 请求方法名称
 class MethodName{
   static const String get = 'get';
   static const String post = 'post';
