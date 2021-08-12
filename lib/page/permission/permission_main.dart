@@ -130,7 +130,6 @@ class PermissionMainPage extends StatelessWidget {
             ),
           ),
 
-
         ],
       ),
     );
