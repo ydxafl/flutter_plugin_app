@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_plugin_app/page/cache/cache_main.dart';
+import 'package:flutter_plugin_app/page/path/path_page_main.dart';
 import 'image/image_main.dart';
 import 'package:flutter_plugin_app/page/network/dio.dart';
 import 'package:flutter_plugin_app/page/network/net_work_main.dart';
@@ -92,6 +93,14 @@ class _HomePageState extends State<HomePage> {
             name: '照片',
             color: Color(0xFF0099CC),
           ),
+
+         /* PluginCard(
+            onTap: (){
+              Get.to(()=>PathPageMain());            },
+            name: '绘图',
+            color: Color(0xFF0099C0),
+          ),*/
+          //PagePageMain
         ],
       ),
     );

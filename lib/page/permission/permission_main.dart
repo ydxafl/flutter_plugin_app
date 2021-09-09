@@ -51,7 +51,7 @@ class PermissionMainPage extends StatelessWidget {
                     '\n'
                     '[Permission.camera].request();'
                     '\n'
-                    '表示申请相机和读文件的权限'
+                    '表示申请相机的权限'
                   ,style: TextStyle(fontSize: 15),),
                 ElevatedButton(
                   onPressed: (){
